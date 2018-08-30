@@ -12,7 +12,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.EdgeHub" Version="1.0.0-beta-004" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.14" />
-    <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.0-beta8" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
