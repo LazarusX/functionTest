@@ -6,12 +6,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp2.0|AnyCPU'">
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <TreatSpecificWarningsAsErrors />
-    <RestoreSources>https://api.nuget.org/v3/index.json;https://www.myget.org/F/azure-appservice/api/v3/index.json;https://www.myget.org/F/aziot-edge-extension/api/v3/index.json</RestoreSources>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.EdgeHub" Version="1.0.0-beta-004" />
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.14" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.19" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
