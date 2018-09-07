@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Devices.Client;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.EdgeHub;
+using Microsoft.Azure.WebJobs.Host;
 using Newtonsoft.Json;
 
 namespace Functions.Samples
@@ -15,7 +16,8 @@ namespace Functions.Samples
         [FunctionName("EdgeHubTriggerCSharp")]
         public static async Task FilterMessageAndSendMessage(
                     [EdgeHubTrigger("input1")] Message messageReceived,
-                    [EdgeHub(OutputName = "output1")] IAsyncCollector<Message> output)
+                    [EdgeHub(OutputName = "output1")] IAsyncCollector<Message> output,
+                    TraceWriter log)
         {
             const int defaultTemperatureThreshold = 19;
             byte[] messageBytes = messageReceived.GetBytes();
@@ -26,6 +28,7 @@ namespace Functions.Samples
 
             if (messageBody != null && messageBody.Machine.Temperature > defaultTemperatureThreshold)
             {
+                log.Info("Info: Received one non-empty message");
                 var filteredMessage = new Message(messageBytes);
                 foreach (KeyValuePair<string, string> prop in messageReceived.Properties)
                 {
@@ -34,6 +37,7 @@ namespace Functions.Samples
 
                 filteredMessage.Properties.Add("MessageType", "Alert");
                 await output.AddAsync(filteredMessage).ConfigureAwait(false);
+                log.Info("Info: Piped out the message");
             }
         }
 
