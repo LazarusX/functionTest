@@ -58,7 +58,8 @@
         "schemaVersion": "1.0",
         "routes": {
           "functionModuleToIoTHub": "FROM /messages/modules/EdgeHubTriggerCSharp/outputs/* INTO $upstream",
-          "sensorTofunctionModule": "FROM /messages/modules/tempSensor/outputs/temperatureOutput INTO BrokeredEndpoint(\"/modules/EdgeHubTriggerCSharp/inputs/input1\")"
+          "sensorTofunctionModule1": "FROM /messages/modules/tempSensor/outputs/temperatureOutput INTO BrokeredEndpoint(\"/modules/EdgeHubTriggerCSharp/inputs/input1\")",
+          "sensorTofunctionModule2": "FROM /messages/modules/tempSensor/outputs/temperatureOutput INTO BrokeredEndpoint(\"/modules/EdgeHubTriggerCSharp/inputs/input2\")"
         },
         "storeAndForwardConfiguration": {
           "timeToLiveSecs": 7200

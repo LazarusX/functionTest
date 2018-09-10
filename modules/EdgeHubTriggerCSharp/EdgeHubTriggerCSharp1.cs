@@ -11,9 +11,9 @@ using Newtonsoft.Json;
 
 namespace Functions.Samples
 {
-    public static class EdgeHubTriggerCSharp
+    public static class EdgeHubTriggerCSharp1
     {
-        [FunctionName("EdgeHubTriggerCSharp")]
+        [FunctionName("EdgeHubTriggerCSharp1")]
         public static async Task FilterMessageAndSendMessage(
                     [EdgeHubTrigger("input1")] Message messageReceived,
                     [EdgeHub(OutputName = "output1")] IAsyncCollector<Message> output,
@@ -28,16 +28,16 @@ namespace Functions.Samples
 
             if (messageBody != null && messageBody.Machine.Temperature > defaultTemperatureThreshold)
             {
-                log.Info("Info: Received one non-empty message");
+                log.Info("Info: EdgeHubTriggerCSharp1 Received one non-empty message");
                 var filteredMessage = new Message(messageBytes);
                 foreach (KeyValuePair<string, string> prop in messageReceived.Properties)
                 {
                     filteredMessage.Properties.Add(prop.Key, prop.Value);
                 }
 
-                filteredMessage.Properties.Add("MessageType", "Alert");
+                filteredMessage.Properties.Add("Function", "EdgeHubTriggerCSharp1");
                 await output.AddAsync(filteredMessage).ConfigureAwait(false);
-                log.Info("Info: Piped out the message");
+                log.Info("Info: EdgeHubTriggerCSharp1 Piped out the message");
             }
         }
 
