@@ -11,4 +11,6 @@ FROM mcr.microsoft.com/azure-functions/dotnet:2.0
 
 ENV AzureWebJobsScriptRoot=/app
 
+ENV AzureFunctionsJobHost:Logging:Console:IsEnabled=true
+
 COPY --from=build-env /app/out /app
